@@ -1,5 +1,13 @@
 // Imports
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+
+// Icons
+import Sunny from '../assets/Cloudy.svg'
+import Cloudy from '../assets/Cloudy.svg'
+import Rainy from '../assets/Rainy.svg'
+import Snowy from '../assets/Snow.svg'
+import Windy from '../assets/Windy.svg'
+import Thunderstorm from '../assets/Thunder.svg'
 
 // Weather Codes & Their Values
 const getWeather = (WeatherCode) => {
@@ -23,6 +31,7 @@ export default function CurrentTemperatureDisplay({ City, Temperature, WeatherCo
     return (
         <View style={styles.DisplayContainer}>
             <Text style={styles.CityText}> {City} </Text>
+            <Sunny width={350} height={350} />
             <Text style={styles.TemperatureText}> {Temperature}° </Text>
             <Text style={styles.WeatherText}> {Weather} </Text>
         </View>
@@ -33,11 +42,13 @@ export default function CurrentTemperatureDisplay({ City, Temperature, WeatherCo
 const styles = StyleSheet.create({
     DisplayContainer: {
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
+        paddingLeft: 30,
     },
     CityText: {
-        color: '#25292e',
-        fontSize: 27,
+        color: '#111827',
+        fontSize: 36,
+        fontWeight: '600',
     },
     TemperatureText: {
         fontSize: 60,
@@ -47,4 +58,4 @@ const styles = StyleSheet.create({
         fontSize: 19,
         paddingTop: 5,
     }
-  });
+});
