@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function CurrentTempeatureDisplay({ City, Tempeature }) {
+export default function CurrentTemperatureDisplay({ City, Temperature }) {
     return (
         <View style={styles.DisplayContainer}>
             <Text style={styles.CityText}> {City} </Text>
-            <Text style={styles.TempeatureText}> {Tempeature} </Text>
+            <Text style={styles.TemperatureText}> {Temperature}° </Text>
         </View>
     )
 }
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         color: '#25292e',
         fontSize: 27,
     },
-    TempeatureText: {
+    TemperatureText: {
         fontSize: 50,
         paddingTop: 20,
     }
