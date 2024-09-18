@@ -14,6 +14,7 @@ export default function App() {
 
   // Variables
   const [temperature, setTemperature] = useState(null);
+  const [weathercode, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Fetch Data Function off of API
@@ -22,10 +23,14 @@ export default function App() {
     const FetchWeatherData = async () => {
       // Try Catch
       try {
+        // Fetching
         const AwaitedData = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LATITUDE}&longitude=${LONGITUDE}&current_weather=true`);
         const Data = await AwaitedData.json();
-        // Set Data, Round Temperature to Even Number
+        
+        // Setting Data
         setTemperature(Math.round(Data.current_weather.temperature));
+        setWeather(Data.current_weather.weathercode);
+
         setLoading(false);
         // Error Catching
       } catch (error) {
@@ -37,17 +42,18 @@ export default function App() {
     // Fetch Data
     FetchWeatherData();
 
-  });
+  }, []);
 
   // Render Data
   return (
     <View style={styles.container}>
-      <CurrentTemperatureDisplay City={"Calgary"} Temperature={temperature} Weather={"Sunny"} > </CurrentTemperatureDisplay>
+      <CurrentTemperatureDisplay City={"Calgary"} Temperature={temperature} WeatherCode={weathercode} > </CurrentTemperatureDisplay>
       <StatusBar style="auto" />
     </View>
   );
 }
 
+// Style Sheet
 const styles = StyleSheet.create({
   container: {
     flex: 1,
