@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 // Icons
-import Sunny from '../assets/Cloudy.svg'
+import Sunny from '../assets/Sunny.svg'
 import Cloudy from '../assets/Cloudy.svg'
 import Rainy from '../assets/Rainy.svg'
 import Snowy from '../assets/Snow.svg'
@@ -22,16 +22,40 @@ const getWeather = (WeatherCode) => {
     return Conditions[WeatherCode] || "Unknown Weather";
 }
 
+// Determine Icon for Weather
+const getWeatherIcon = (WeatherCode) => {
+    switch (true) {
+        case (WeatherCode === 0 || WeatherCode === 1):
+            return <Sunny width={320} height={320} />;
+        case (WeatherCode === 2 || WeatherCode === 3):
+            return <Cloudy width={320} height={320} />;
+        case (WeatherCode >= 51 && WeatherCode <= 65):
+            return <Rainy width={320} height={320} />;
+        case (WeatherCode === 80 || WeatherCode === 81 || WeatherCode === 82):
+            return <Windy width={320} height={320} />;
+        case ((WeatherCode >= 71 && WeatherCode <= 75) || (WeatherCode >= 85 && WeatherCode <= 86)):
+            return <Snowy width={320} height={320} />;
+        case (WeatherCode >= 95 && WeatherCode <= 99):
+            return <Thunderstorm width={320} height={320} />;
+        default:
+            // Default to Sunny if no icon is mapped
+            return <Sunny width={320} height={320} />;
+    }
+}
+
 // Component Rendering
 export default function CurrentTemperatureDisplay({ City, Temperature, WeatherCode }) {
 
-    // Get Condition & Display
+    // Get Condition & Display / Get Icon
     const Weather = getWeather(WeatherCode);
+    const WeatherIcon = getWeatherIcon(WeatherCode)
 
     return (
         <View style={styles.DisplayContainer}>
             <Text style={styles.CityText}> {City} </Text>
-            <Sunny width={350} height={350} />
+            <View style={styles.WeatherContainer}>
+                {WeatherIcon}
+            </View>
             <Text style={styles.TemperatureText}> {Temperature}° </Text>
             <Text style={styles.WeatherText}> {Weather} </Text>
         </View>
@@ -43,7 +67,6 @@ const styles = StyleSheet.create({
     DisplayContainer: {
         display: 'flex',
         alignItems: 'flex-start',
-        paddingLeft: 30,
     },
     CityText: {
         color: '#111827',
@@ -52,10 +75,13 @@ const styles = StyleSheet.create({
     },
     TemperatureText: {
         fontSize: 60,
-        paddingTop: 30,
     },
     WeatherText: {
         fontSize: 19,
         paddingTop: 5,
+    },
+    WeatherContainer: {
+        display: 'flex',
+        alignItems: 'center',
     }
 });
