@@ -50,7 +50,7 @@ export default function App() {
 
         // Daily forecast
         const dailyForecast = Data.daily.time.map((day, index) => ({
-          day: day, // Corrected 'date' to 'day'
+          day: day,
           minTemperature: Math.round(Data.daily.temperature_2m_min[index]),
           maxTemperature: Math.round(Data.daily.temperature_2m_max[index]),
           weatherCode: Data.daily.weathercode[index],
