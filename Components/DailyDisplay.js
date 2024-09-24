@@ -11,7 +11,7 @@ export default function DailyDisplay({ Day, MinTemperature, MaxTemperature }) {
                 <View style={styles.MinMax} >
                     <Text style={styles.MinTemperature}> Min {MinTemperature}° -</Text>
                     <Text style={styles.MaxTemperature}> {MaxTemperature}° Max </Text>
-            </View>
+                </View>
             </View>
         </View>
     )
