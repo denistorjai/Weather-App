@@ -50,7 +50,7 @@ export default function App() {
 
         // Daily forecast
         const dailyForecast = Data.daily.time.map((day, index) => ({
-          day: new Date(day).toLocaleDateString(undefined, { weekday: 'long' }), // Corrected 'date' to 'day'
+          day: day, // Corrected 'date' to 'day'
           minTemperature: Math.round(Data.daily.temperature_2m_min[index]),
           maxTemperature: Math.round(Data.daily.temperature_2m_max[index]),
           weatherCode: Data.daily.weathercode[index],
@@ -101,7 +101,7 @@ export default function App() {
             />
           ))}
         </View>
-        <Text style={styles.headertext} > Week Forecast </Text>
+        <Text style={styles.headertext} > Weekly Forecast </Text>
         <View style={styles.dailyforecastcontainer} >
           {dailyForecastData.map((daily, index) => (
             <DailyDisplay
