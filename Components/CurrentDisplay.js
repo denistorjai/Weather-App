@@ -26,20 +26,20 @@ const getWeather = (WeatherCode) => {
 const getWeatherIcon = (WeatherCode) => {
     switch (true) {
         case (WeatherCode === 0 || WeatherCode === 1):
-            return <Sunny width={320} height={320} />;
+            return <Sunny width={290} height={290} />;
         case (WeatherCode === 2 || WeatherCode === 3):
-            return <Cloudy width={320} height={320} />;
+            return <Cloudy width={290} height={290} />;
         case (WeatherCode >= 51 && WeatherCode <= 65):
-            return <Rainy width={320} height={320} />;
+            return <Rainy width={290} height={290} />;
         case (WeatherCode === 80 || WeatherCode === 81 || WeatherCode === 82):
-            return <Windy width={320} height={320} />;
+            return <Windy width={290} height={290} />;
         case ((WeatherCode >= 71 && WeatherCode <= 75) || (WeatherCode >= 85 && WeatherCode <= 86)):
-            return <Snowy width={320} height={320} />;
+            return <Snowy width={290} height={290} />;
         case (WeatherCode >= 95 && WeatherCode <= 99):
-            return <Thunderstorm width={320} height={320} />;
+            return <Thunderstorm width={290} height={290} />;
         default:
             // Default to Sunny if no icon is mapped
-            return <Sunny width={320} height={320} />;
+            return <Sunny width={290} height={290} />;
     }
 }
 
@@ -48,7 +48,7 @@ export default function CurrentTemperatureDisplay({ City, Temperature, WeatherCo
 
     // Get Condition & Display / Get Icon
     const Weather = getWeather(WeatherCode);
-    const WeatherIcon = getWeatherIcon(WeatherCode)
+    const WeatherIcon = getWeatherIcon(WeatherCode);
 
     return (
         <View style={styles.DisplayContainer}>
@@ -64,21 +64,22 @@ export default function CurrentTemperatureDisplay({ City, Temperature, WeatherCo
 
 // Style Sheet
 const styles = StyleSheet.create({
-    DisplayContainer: {
-        display: 'flex',
-        alignItems: 'flex-start',
-    },
     CityText: {
-        color: '#111827',
-        fontSize: 36,
+        color: '#EBECED',
+        fontSize: 35,
         fontWeight: '600',
+        paddingBottom: 4,
     },
     TemperatureText: {
         fontSize: 60,
+        fontWeight: '500',
+        color: '#EBECED',
     },
     WeatherText: {
         fontSize: 19,
         paddingTop: 5,
+        fontWeight: '400',
+        color: '#EBECED',
     },
     WeatherContainer: {
         display: 'flex',
